@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Estructura Base de Datos</title>
+    <meta name="description" content="Curso de Bootstrap Gratis">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Ignacio Gutiérrez">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Estilos en Css -->
+    <style>
+      .slider{
+        background: url("images/bg-3.png");
+        background-size: cover;
+        background-position: center; 
+        height: 400px;
+      }
+    </style>   
+  </head>
+  <body>
+     
+    <!-- Menú de navegación -->
+    <div class="container-fluid nav bg-dark fixed-top">
+      <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse container">
+          <a class="navbar-brand text-center w-100 text-white" href="#">
+            <img src="images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    German Alejandro Castellanos Marin 
+          </a>      
+      </nav>
+    </div>
+    <!-- Fin Menú de navegación -->
+    <!-- Sección Slider -->
+    <div class="container-fluid slider text-white d-flex flex-column justify-content-center align-items-center">
+      <div class="text-center">
+        <h3 class="hidden-xs-down">Productos de aprendizaje</h3>
+        <h1 class="display-4">Estructura de Base de Datos</h1>
+        <p class="lead hidden-xs-down">Correo Electronico:</p>
+      </div>
+      <div class="form-group mr-3">
+        <a href="#" style="font-size: 25px;color: white;"> germal150@hotmail.com </a>
+      </div>
+    </div>
+    <!-- Fin Sección Slider -->
+    <!-- Main -->
+    <div id="app" class="container">
+      <!-- Modal -->
+      <div class="modal fade" id="PA" tabindex="-1" aria-labelledby="PA" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" v-html="Titulo" id="PA">.</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-8">
+                  <img :src="imagen" class="img-fluid">
+                  <p v-html="fecha" class="text-center"></p>
+                </div>
+                <div class="col-4">
+                  <h3>Descripcion</h3>
+                  <p v-html="descripcion"></p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>PA's</h2>
+      <p class="lead">Escrito por German Castellanos</p>
+      <hr>
+        <div class="row">
+          <!-- Sección de noticias -->
+          <div class="col-12 col-lg-9 mb-5">
+          
+            <!-- Artículos -->
+
+
+              <!-- Artículos -->
+              <div v-for="l in lista"  class="row mb-5">
+                <div class="col-3">
+                  <img class="img-fluid" :src="l.foto" alt="">
+                  <p v-html="l.fecha"class="lead text-muted text-center">08 Abril 2017</p>
+                </div>
+                <div class="col-9">
+                  <a href="#"><h3 v-html="l.Titulo">.</h3></a>
+                  <a href="#"><span class="badge badge-danger text-uppercase">Mapa sinoptico</span></a>
+                  <a href="#"><span class="badge badge-primary text-uppercase">Estructura de Datos</span></a>
+                  <p v-html="l.Desc">.</p>
+                  <a href="#" class="btn btn-outline-warning btn-sm" @click="mostrarInfo(l.fecha,l.Titulo,l.Desc,l.foto)" data-toggle="modal" data-target="#PA">Leer más...</a>
+                </div>
+              </div>
+            <!-- Fin Artículos -->
+            <!-- Navegación páginas 
+              <div class="d-flex justify-content-center">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                  <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary">Inicio</button>
+                    <button type="button" class="btn btn-secondary active">1</button>
+                    <button type="button" class="btn btn-secondary">2</button>
+                    <button type="button" class="btn btn-secondary">3</button>
+                    <button type="button" class="btn btn-secondary">4</button>
+                    <button type="button" class="btn btn-secondary">Final</button>
+                  </div>
+                </div>
+              </div>
+             Fin Navegación páginas -->
+          </div>
+          <!-- Fin Sección noticias -->
+          <!-- Aside -->
+          <div class="col-12 col-md-3">
+            <!-- Cards -->
+            <div class="mb-2">
+              <div class="card card-inverse bg-primary text-center">
+                <div class="card-body">
+                  <blockquote class="card-blockquote text-white">
+                    <i class="fas fa-table fa-7x"></i>
+                    <footer>Tablas Normalizadas <br><cite title="Source Title" class="font-weight-bold">Normalizacion</cite></footer>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Cards -->
+            <!-- Cards -->
+            <div class="mb-2">
+              <div class="card card-inverse bg-success text-center">
+                <div class="card-body">
+                  <blockquote class="card-blockquote text-white">
+                    <i class="fas fa-database fa-7x"></i>
+                    <footer>Gestores de Base de Datos<br><cite title="Source Title" class="font-weight-bold">BD</cite></footer>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Cards -->
+            <!-- Cards -->
+            <div class="mb-2">
+              <div class="card card-inverse bg-warning text-center">
+                <div class="card-body">
+                  <blockquote class="card-blockquote text-white">
+                    <i class="fas fa-server fa-7x"></i>
+                    <footer>Localhost<br><cite title="Source Title" class="font-weight-bold">Servidores</cite></footer>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Cards -->
+            <!-- Cards -->
+            <div class="mb-2">
+              <div class="card card-inverse bg-danger text-center">
+                <div class="card-body">
+                  <blockquote class="card-blockquote text-white">
+                    <i class="fas fa-key fa-7x"></i>
+                    <footer>Clave Primaria y Clave Foranea!<br><cite title="Source Title" class="font-weight-bold">Claves</cite></footer>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+            <!-- Fin Cards -->
+          </div>
+          <!-- Fin Aside -->
+        </div>
+    </div>
+    <!-- Fin Main -->
+    <!-- Footer -->
+    <div class="container-fluid bg-dark text-white py-3">
+      <div class="container text-center">
+        <p>Sitio desarrollado por German Castellanos!</p>
+        <a href="https://api.whatsapp.com/send?phone=529621127172">contacto de whatssap</a>
+      </div>
+    </div>
+    <!-- Fin Footer -->
+   
+  
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        lista: [],
+        fecha:"",
+        Titulo:"",
+        descripcion:"",
+        imagen:"",
+      },
+      async created() {
+        var data = await axios.get("https://pas-estructura-de-datos.firebaseio.com/PA'S.json")
+        this.lista = data.data
+      },
+      methods:{
+        mostrarInfo(fecha,titulo,descripcion,imagen){
+          this.fecha = fecha
+          this.Titulo = titulo
+          this.descripcion = descripcion
+          this.imagen = imagen          
+          console.log(imagen)
+        }
+      }
+    })
+    </script>
+
+  </body>
+</html>
