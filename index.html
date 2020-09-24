@@ -22,7 +22,6 @@
     </style>   
   </head>
   <body>
-     
     <!-- Menú de navegación -->
     <div class="container-fluid nav bg-dark fixed-top">
       <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse container">
@@ -58,7 +57,8 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="row">
+
+              <div v-if="!video && !archivo" class="row">
                 <div class="col-8">
                   <img :src="imagen" class="img-fluid">
                   <p v-html="fecha" class="text-center"></p>
@@ -66,8 +66,31 @@
                 <div class="col-4">
                   <h3>Descripcion</h3>
                   <p v-html="descripcion"></p>
+                  <h3>Temas:</h3>
+                  <ul>
+                    <li v-html="tema1"></li>
+                    <li v-html="tema2"></li>
+                  </ul>
                 </div>
               </div>
+
+              <div v-if="video" class="row justify-content-center">
+                <div class="col-11 text-center">
+                  <video width="100%"  controls :src="video">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div class="col-11">
+                  <h3>Descripcion</h3>
+                  <p v-html="descripcion"></p>
+                  <h3>Temas:</h3>
+                  <ul>
+                    <li v-html="tema1"></li>
+                    <li v-html="tema2"></li>
+                  </ul>
+                </div>
+              </div>              
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -93,10 +116,10 @@
                 </div>
                 <div class="col-9">
                   <a href="#"><h3 v-html="l.Titulo">.</h3></a>
-                  <a href="#"><span class="badge badge-danger text-uppercase">Mapa sinoptico</span></a>
-                  <a href="#"><span class="badge badge-primary text-uppercase">Estructura de Datos</span></a>
+                  <a href="#"><span v-html="l.tema1" class="badge badge-danger text-uppercase">.</span></a>
+                  <a href="#"><span v-html="l.tema2" class="badge badge-primary text-uppercase">.</span></a>
                   <p v-html="l.Desc">.</p>
-                  <a href="#" class="btn btn-outline-warning btn-sm" @click="mostrarInfo(l.fecha,l.Titulo,l.Desc,l.foto)" data-toggle="modal" data-target="#PA">Leer más...</a>
+                  <a href="#" class="btn btn-outline-warning btn-sm" @click="mostrarInfo(l.fecha,l.Titulo,l.Desc,l.foto,l.video,l.archivo,l.tema1,l.tema2)" data-toggle="modal" data-target="#PA">Leer más...</a>
                 </div>
               </div>
             <!-- Fin Artículos -->
@@ -194,20 +217,27 @@
         lista: [],
         fecha:"",
         Titulo:"",
+        video:"",
+        archivo:"",
         descripcion:"",
         imagen:"",
+        tema1:"",
+        tema2:""
       },
       async created() {
         var data = await axios.get("https://pas-estructura-de-datos.firebaseio.com/PA'S.json")
         this.lista = data.data
       },
       methods:{
-        mostrarInfo(fecha,titulo,descripcion,imagen){
+        mostrarInfo(fecha,titulo,descripcion,imagen,video,archivo,tema1,tema2){
           this.fecha = fecha
           this.Titulo = titulo
           this.descripcion = descripcion
           this.imagen = imagen          
-          console.log(imagen)
+          this.video = video
+          this.archivo = archivo
+          this.tema1 = tema1
+          this.tema2 = tema2
         }
       }
     })
