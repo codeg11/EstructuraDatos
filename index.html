@@ -89,6 +89,21 @@
                     <li v-html="tema2"></li>
                   </ul>
                 </div>
+              </div>            
+
+              <div v-if="archivo" class="row justify-content-center">
+                <div class="col-8 text-center">
+                 <iframe :src="archivo" style="height:700px;" class="w-100" frameborder="0"></iframe>
+                </div>
+                <div class="col-4">
+                  <h3>Descripcion</h3>
+                  <p v-html="descripcion"></p>
+                  <h3>Temas:</h3>
+                  <ul>
+                    <li v-html="tema1"></li>
+                    <li v-html="tema2"></li>
+                  </ul>
+                </div>
               </div>              
 
             </div>
@@ -193,6 +208,7 @@
           <!-- Fin Aside -->
         </div>
     </div>
+
     <!-- Fin Main -->
     <!-- Footer -->
     <div class="container-fluid bg-dark text-white py-3">
@@ -210,6 +226,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/vue.js"></script>
+
+    
     <script>
     var app = new Vue({
       el: '#app',
@@ -225,7 +243,9 @@
         tema2:""
       },
       async created() {
-        var data = await axios.get("https://pas-estructura-de-datos.firebaseio.com/PA'S.json")
+ 
+        var data = await axios.get("https://pas-estructura-de-datos.firebaseio.com/PA'S.json", {headers: {
+                        'Access-Control-Allow-Origin': '*'}})
         this.lista = data.data
       },
       methods:{
